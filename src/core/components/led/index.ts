@@ -1,6 +1,8 @@
 import Converter from "../../utils/converter/converter.utils";
+import JSDuinoVariable from "../variable";
 import { PinModes } from "../../enums/pinModes/pinModes.enum";
 import { DigitalStates } from "../../enums/digitalStates/digitalStates.enum";
+import { random } from "../../../utils";
 
 class JSDuinoLed {
   private converter: Converter;
@@ -33,8 +35,13 @@ class JSDuinoLed {
     this.converter.append(`digitalWrite(${this.pin},HIGH);`);
   };
 
-  public getDigitalValue = (variableName: string) => {
+  public getDigitalValue = (variableName?: string): JSDuinoVariable => {
+    if (!variableName) {
+      variableName = random();
+    }
+
     this.converter.append(`int ${variableName} = digitalRead(${this.pin});`);
+    return new JSDuinoVariable(variableName, "int");
   };
 
   public toggle = () => {

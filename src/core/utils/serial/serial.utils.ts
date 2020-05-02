@@ -26,6 +26,10 @@ class JSDuinoSerial {
   printVariable = (variableName: string) => {
     this.converter.append(`Serial.print(${variableName});`);
   };
+
+  printlnVariable = (variableName: string) => {
+    this.converter.append(`Serial.println(${variableName});`);
+  };
 }
 
 export default JSDuinoSerial;

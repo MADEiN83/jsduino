@@ -1,43 +1,37 @@
-import JSDuino, {
-  Serial,
-  setup,
-  loop,
-  delay,
-  compile,
-  digitalRead,
-} from "./core";
+import JSDuino, { setup, loop, delay, compile, cond, Serial } from "./core";
 
-const LEDS = [13, 12, 11, 10, 9, 8];
-const leds = LEDS.map((led) => new JSDuino.Led(led));
+const BUILTIN_LED_PIN = 12;
+const myLed = new JSDuino.Led(BUILTIN_LED_PIN);
 
-const start = () => {
-  setup(() => {
-    Serial.begin();
-    leds.forEach((led) => led.output());
+setup(() => {
+  Serial.begin();
+  myLed.output();
+});
 
-    // offAll();
+loop(() => {
+  myLed.toggle();
+  delay(500);
+  // myLed.toggle();
+
+  const one = myLed.getDigitalValue();
+  const two = myLed.getDigitalValue();
+
+  // delay(500);
+  // myLed.toggle();
+  // myLed.getDigitalValue("two");
+  // delay(500);
+
+  cond(one, "LOW", {
+    operator: "==",
+    onTrue: () => {
+      Serial.println("YES!!");
+    },
+    onFalse: () => {
+      Serial.println("NO...!!");
+    },
   });
 
-  loop(() => {
-    leds[0].toggle();
+  delay(500);
+});
 
-    leds[0].getDigitalValue("one");
-    Serial.print("My value is: ");
-    Serial.printVariable("one");
-
-    delay(1000);
-    leds[0].toggle();
-    leds[0].getDigitalValue("two");
-    Serial.print("My value is: ");
-    Serial.printVariable("two");
-    delay(1000);
-  });
-
-  console.log(compile());
-};
-
-const offAll = () => {
-  leds.forEach((led) => led.off());
-};
-
-start();
+console.log(compile());
