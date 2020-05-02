@@ -8,7 +8,7 @@ import {
   LOW,
   digitalWrite,
   equals,
-} from "./utils";
+} from "./core/jsduino.core";
 
 const LEDS = [13, 12];
 
