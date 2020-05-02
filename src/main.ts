@@ -1,37 +1,27 @@
-import JSDuino, { setup, loop, delay, compile, cond, Serial } from "./core";
+import {
+  setup,
+  loop,
+  pinMode,
+  OUTPUT,
+  compile,
+  digitalRead,
+  LOW,
+  digitalWrite,
+  equals,
+} from "./utils";
 
-const BUILTIN_LED_PIN = 12;
-const myLed = new JSDuino.Led(BUILTIN_LED_PIN);
+const LEDS = [13, 12];
 
 setup(() => {
-  Serial.begin();
-  myLed.output();
+  LEDS.map((pin) => pinMode(pin, OUTPUT));
 });
 
 loop(() => {
-  myLed.toggle();
-  delay(500);
-  // myLed.toggle();
+  const t = digitalRead(LEDS[0]);
 
-  const one = myLed.getDigitalValue();
-  const two = myLed.getDigitalValue();
-
-  // delay(500);
-  // myLed.toggle();
-  // myLed.getDigitalValue("two");
-  // delay(500);
-
-  cond(one, "LOW", {
-    operator: "==",
-    onTrue: () => {
-      Serial.println("YES!!");
-    },
-    onFalse: () => {
-      Serial.println("NO...!!");
-    },
+  equals(t, 10, () => {
+    digitalWrite(LEDS[0], LOW);
   });
-
-  delay(500);
 });
 
 console.log(compile());
