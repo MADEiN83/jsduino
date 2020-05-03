@@ -42,13 +42,22 @@ export const digitalRead = (pin: number): Variable => {
   return new Variable(name);
 };
 
-export const equals = (v1: any, v2: any, callback: () => void) => {
+export const delay = (timeInMs: number) => {
+  res += transpile(TRANSPILE_KEYS.DELAY, { timeInMs });
+};
+
+export const equals = (
+  v1: any,
+  v2: any,
+  isTrue: () => void,
+  isFalse?: () => void
+) => {
   const left = extractName(v1);
   const right = extractName(v2);
-  const saveRes = res;
+  let saveRes = res;
   res = "";
 
-  callback();
+  isTrue();
 
   res =
     saveRes +
@@ -58,6 +67,28 @@ export const equals = (v1: any, v2: any, callback: () => void) => {
       operator: "==",
       content: res,
     });
+  // ELSE
+  if (!isFalse) {
+    return;
+  }
+
+  saveRes = res;
+  res = "";
+
+  isFalse();
+
+  res =
+    saveRes +
+    transpile(TRANSPILE_KEYS.ELSE, {
+      content: res,
+    });
+};
+
+export const createVar = (value: any): Variable => {
+  const name = random();
+  const variable = new Variable(name);
+  variable.value = value;
+  return variable;
 };
 
 export const compile = () => compiler.compile(res);

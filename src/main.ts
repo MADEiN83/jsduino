@@ -1,27 +1,28 @@
-import {
-  setup,
-  loop,
-  pinMode,
-  OUTPUT,
-  compile,
-  digitalRead,
-  LOW,
-  digitalWrite,
-  equals,
-} from "./core/jsduino.core";
+// import {
+//   setup,
+//   loop,
+//   pinMode,
+//   OUTPUT,
+//   compile,
+//   digitalRead,
+//   LOW,
+//   digitalWrite,
+//   equals,
+//   HIGH,
+//   delay,
+// } from "./core/jsduino.core";
 
-const LEDS = [13, 12];
+// const LEDS = [13, 12, 11, 10, 9, 8];
 
-setup(() => {
-  LEDS.map((pin) => pinMode(pin, OUTPUT));
-});
+// setup(() => {
+//   LEDS.map((pin) => pinMode(pin, OUTPUT));
+// });
 
-loop(() => {
-  const t = digitalRead(LEDS[0]);
+// loop(() => {
+//   digitalWrite(LEDS[0], LOW);
+//   delay(1000);
+// });
 
-  equals(t, 10, () => {
-    digitalWrite(LEDS[0], LOW);
-  });
-});
+// compile();
 
-compile();
+console.log("coucou");
