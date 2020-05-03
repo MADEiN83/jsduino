@@ -14,7 +14,6 @@
   },
   "devDependencies": {
     "@types/node": "^13.13.4",
-    "chevrotain": "^7.0.1",
     "fs": "0.0.1-security",
     "nodemon": "^2.0.3",
     "serialport": "^8.0.7",

@@ -24,4 +24,4 @@ loop(() => {
   });
 });
 
-console.log(compile());
+compile();

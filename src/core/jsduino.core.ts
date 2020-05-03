@@ -1,6 +1,9 @@
 import { random, extractName } from "../utils/variable/variable.utils";
 import { transpile, TRANSPILE_KEYS } from "../utils/replace/replace.utils";
 import { Variable } from "./components";
+import Compiler from "./compiler";
+
+const compiler = new Compiler();
 
 export const OUTPUT = "OUTPUT";
 export const INPUT = "INTPUT";
@@ -57,4 +60,4 @@ export const equals = (v1: any, v2: any, callback: () => void) => {
     });
 };
 
-export const compile = () => res;
+export const compile = () => compiler.compile(res);
