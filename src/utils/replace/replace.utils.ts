@@ -13,7 +13,7 @@ const DICO = {
   [TRANSPILE_KEYS.IF]: `if(:left:operator:right){:content}`,
   [TRANSPILE_KEYS.PIN_MODE]: `pinMode(:pin,:mode);`,
   [TRANSPILE_KEYS.DIGITAL_WRITE]: `digitalWrite(:pin,:type);`,
-  [TRANSPILE_KEYS.DIGITAL_READ]: `var :name = digitalRead(:pin);`,
+  [TRANSPILE_KEYS.DIGITAL_READ]: `var :name=digitalRead(:pin);`,
 };
 
 export const transpile = (key: TRANSPILE_KEYS, args: any = {}): string => {

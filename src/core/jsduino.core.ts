@@ -1,5 +1,6 @@
 import { random, extractName } from "../utils/variable/variable.utils";
 import { transpile, TRANSPILE_KEYS } from "../utils/replace/replace.utils";
+import { Variable } from "./components";
 
 export const OUTPUT = "OUTPUT";
 export const INPUT = "INTPUT";
@@ -57,12 +58,3 @@ export const equals = (v1: any, v2: any, callback: () => void) => {
 };
 
 export const compile = () => res;
-
-//
-export class Variable {
-  public name: string;
-
-  constructor(name: string) {
-    this.name = name;
-  }
-}
