@@ -14,13 +14,14 @@ export enum TOKEN_TYPES {
   FUNCTION = "FUNCTION",
   SETUP_LOOP = "SETUP_LOOP",
   CONST_LET = "CONST_LET",
-  NUMBERS = "NUMBERS",
   //
+  NUMBERS = "NUMBERS",
   STRING = "STRING",
   TEST = "TEST",
 }
 
 const tokens: chevrotain.ITokenConfig[] = [
+  { name: TOKEN_TYPES.TEST, pattern: /(\w+).map/ },
   { name: TOKEN_TYPES.IF, pattern: /if/ },
   { name: TOKEN_TYPES.PARENTHESIS, pattern: /\(|\)/ },
   { name: TOKEN_TYPES.BRACKETS, pattern: /\{|\}/ },
@@ -39,6 +40,7 @@ const tokens: chevrotain.ITokenConfig[] = [
   //
   { name: TOKEN_TYPES.NUMBERS, pattern: /[0-9]+/ },
   { name: TOKEN_TYPES.STRING, pattern: /(\w)+/ },
+  //
 ];
 
 export default tokens.map((token) => createToken(token));
